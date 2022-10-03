@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Example.Service.ComponentTest;
 
 public class Tests
@@ -12,4 +14,27 @@ public class Tests
     {
         Assert.Pass();
     }
+
+    [Test]
+    public async void ShouldReturnAListOfStaticValuesOnGetRequest()
+    {
+        // Arrange
+        var httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5000") };
+
+        // Act
+        var response = await httpClient.GetAsync("/api/values");
+        var responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
+
+        // Assert
+        Assert.That(responseJson, Is.EqualTo("[\"Value1\", \"Value2\", \"Value3\" ]"));
+    }
+
+    private ComponentTestConfig TestConfig { get; set; } = new ComponentTestConfig();
+
+    //[OneTimeSetUp]
+    //public void InitialSetup()
+    //{
+    //    TestConfig = new ConfigurationBuilder()
+    //            .AddJsonFile("appsetting.json")
+    //}
 }
