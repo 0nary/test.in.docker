@@ -16,7 +16,7 @@ public class Tests
     }
 
     [Test]
-    public async void ShouldReturnAListOfStaticValuesOnGetRequest()
+    public async Task ShouldReturnAListOfStaticValuesOnGetRequest()
     {
         // Arrange
         var httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5000") };
@@ -29,12 +29,4 @@ public class Tests
         Assert.That(responseJson, Is.EqualTo("[\"Value1\", \"Value2\", \"Value3\" ]"));
     }
 
-    private ComponentTestConfig TestConfig { get; set; } = new ComponentTestConfig();
-
-    //[OneTimeSetUp]
-    //public void InitialSetup()
-    //{
-    //    TestConfig = new ConfigurationBuilder()
-    //            .AddJsonFile("appsetting.json")
-    //}
 }

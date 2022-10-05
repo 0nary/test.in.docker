@@ -15,7 +15,7 @@ namespace Example.Service.Controllers
         public ActionResult<IEnumerable<string>> Get() => Ok(_valuesService.GetValues());
 
         // GET: api/Values/5
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public ActionResult<IEnumerable<string>> Get(int id) => Ok(_valuesService.GetValue());
     }
 }
