@@ -14,5 +14,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Execute tests
-        working-directory: ./virtualisation/docker-compose
+        working-directory: ./src/Example.Service/
         run: docker-compose up --exit-code-from integration-tests integration-tests
