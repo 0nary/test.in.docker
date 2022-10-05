@@ -19,7 +19,6 @@ services:
     working_dir: /src
     command: 
         [
-        "DIR",
         "--",
         "dotnet",
         "test"
