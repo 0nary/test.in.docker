@@ -17,4 +17,12 @@ services:
       - .:/src
       - ../test:/test
     working_dir: /src
-    command: "dotnet test"
+    command: 
+        [
+        "DIR",
+        "--",
+        "dotnet",
+        "test"
+      ]
+    depends_on:
+     - timesheets-api
