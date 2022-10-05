@@ -7,19 +7,8 @@ services:
       - ./Timesheets:/api
     working_dir: /api
     command: "dotnet run"
-    depends_on:
-     - sql-server-database
     ports:
       - "8001:8081"
-
-  sql-server-database:
-    container_name: sql-server-database
-    image: mcr.microsoft.com/mssql/server
-    environment:
-      SA_PASSWORD: 1AvenueCodePassword*
-      ACCEPT_EULA: "Y"
-    ports:
-      - "1433:1433"
 
   integration-tests:
     container_name: integration-tests
@@ -28,13 +17,6 @@ services:
       - .:/src
       - ../test:/test
     working_dir: /src
-    command: 
-        [
-        "./Scripts/wait-for-it.sh",
-        "sql-server-database:1433",
-        "--",
-        "dotnet",
-        "test"
-      ]
+    command: "dotnet run"
     depends_on:
      - timesheets-api
