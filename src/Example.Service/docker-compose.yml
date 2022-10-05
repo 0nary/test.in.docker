@@ -17,6 +17,6 @@ services:
       - .:/src
       - ../test:/test
     working_dir: /
-    command: "dotnet test ./Example.Service.sln --no-restore"
+    command: "dotnet test --no-restore"
     depends_on:
      - timesheets-api
