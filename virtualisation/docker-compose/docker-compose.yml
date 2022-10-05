@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  example-service:
+    image: ${DOCKER_REGISTRY-}example-service
+    build:
+      context: ../../
+      dockerfile: src/Example.Service/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5000:80"
+      
+  example-service-unit-test:
+    image: ${DOCKER_REGISTRY-}example-service-unit-test
+    build:
+      context: ../../
+      dockerfile: test/Example.Service.UnitTest/Dockerfile      
+      
+  example-service-unit-component-test:
+    image: ${DOCKER_REGISTRY-}example-service-component-test
+    build:
+      context: ../../
+      dockerfile: test/Example.Service.ComponentTest/Dockerfile
