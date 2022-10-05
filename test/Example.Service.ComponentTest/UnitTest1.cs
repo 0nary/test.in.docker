@@ -1,4 +1,7 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Example.Service.ComponentTest;
 
@@ -19,14 +22,25 @@ public class Tests
     public async Task ShouldReturnAListOfStaticValuesOnGetRequest()
     {
         // Arrange
-        var httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5000") };
-
+        var httpClient = new HttpClient();
+        string responseJson = "";
         // Act
-        var response = await httpClient.GetAsync("/api/values");
-        var responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
+
+        using (httpClient)
+        {
+            using (var response = await httpClient.GetAsync("https://localhost:7070/api/Values"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                     responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
+                }
+            }
+        }
+        
+        
 
         // Assert
-        Assert.That(responseJson, Is.EqualTo("[\"Value1\", \"Value2\", \"Value3\" ]"));
+        Assert.That(responseJson, Is.EqualTo("[\"Value1\",\"Value2\",\"Value3\"]"));
     }
 
 }
