@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Example.Service.UnitTest": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
