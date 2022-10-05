@@ -28,7 +28,7 @@ public class Tests
 
         using (httpClient)
         {
-            using (var response = await httpClient.GetAsync("https://localhost:7070/api/Values"))
+            using (var response = await httpClient.GetAsync("http://127.0.0.1:5000/api/Values"))
             {
                 if (response.IsSuccessStatusCode)
                 {
