@@ -1,24 +1,20 @@
-version: '3.4'
-
+version: "3.4"
 services:
-  example-service:
-    image: ${DOCKER_REGISTRY-}example-service
-    build:
-      context: ../../
-      dockerfile: src/Example.Service/Dockerfile
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
+  timesheets-api:
+    container_name: timesheets-api
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    volumes:
+      - ./Timesheets:/api
+    working_dir: /api
+    command: "dotnet run"
     ports:
-      - "5000:80"
-      
-  example-service-unit-test:
-    image: ${DOCKER_REGISTRY-}example-service-unit-test
-    build:
-      context: ../../
-      dockerfile: test/Example.Service.UnitTest/Dockerfile      
-      
-  example-service-unit-component-test:
-    image: ${DOCKER_REGISTRY-}example-service-component-test
-    build:
-      context: ../../
-      dockerfile: test/Example.Service.ComponentTest/Dockerfile
+      - "8001:8081"
+
+  integration-tests:
+    container_name: integration-tests
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    volumes:
+      - .:/src
+      - ../test:/test
+    working_dir: /src
+    command: "dotnet test"
