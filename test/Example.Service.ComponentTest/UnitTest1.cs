@@ -49,12 +49,13 @@ public class Tests
     {
         // Arrange
         var httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("http://localhost/");
         string responseJson = "";
         // Act
 
         using (httpClient)
         {
-            using (var response = await httpClient.GetAsync("http://localhost:5000/api/Values"))
+            using (var response = await httpClient.GetAsync("/api/Values"))
             {
                 if (response.IsSuccessStatusCode)
                 {
