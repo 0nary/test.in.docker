@@ -4,7 +4,7 @@ services:
     container_name: timesheets-api
     image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - ./src:/src
+      - ../../src:/src
     working_dir: /src
     command: "dotnet run"
     ports:
@@ -14,8 +14,8 @@ services:
     container_name: integration-tests
     image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - .:/solution
+      - ../..:/solution
     working_dir: /solution
-    command: "dotnet test"
+    command: "dotnet test ./test/Example.Service.UnitTest.csproj"
     depends_on:
      - timesheets-api
