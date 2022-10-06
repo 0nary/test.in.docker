@@ -49,7 +49,7 @@ public class Tests
     {
         // Arrange
         var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("http://localhost/");
+        httpClient.BaseAddress = new Uri("http://localhost");
         string responseJson = "";
         // Act
 
