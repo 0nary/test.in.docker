@@ -21,26 +21,26 @@ public class Tests
     [Test]
     public async Task ShouldReturnAListOfStaticValuesOnGetRequest()
     {
-        //// Arrange
-        //var httpClient = new HttpClient();
-        //string responseJson = "";
-        //// Act
+        // Arrange
+        var httpClient = new HttpClient();
+        string responseJson = "";
+        // Act
 
-        //using (httpClient)
-        //{
-        //    using (var response = await httpClient.GetAsync("http://127.0.0.1:5000/api/Values"))
-        //    {
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //             responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
-        //        }
-        //    }
-        //}
-        
-        
+        using (httpClient)
+        {
+            using (var response = await httpClient.GetAsync("http://127.0.0.1:5000/api/Values"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
+                }
+            }
+        }
 
-        //// Assert
-        //Assert.That(responseJson, Is.EqualTo("[\"Value1\",\"Value2\",\"Value3\"]"));
+
+
+        // Assert
+        Assert.That(responseJson, Is.EqualTo("[\"Value1\",\"Value2\",\"Value3\"]"));
     }
 
 }
