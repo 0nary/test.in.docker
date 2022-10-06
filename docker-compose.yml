@@ -4,18 +4,18 @@ services:
     container_name: timesheets-api
     image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - ./Timesheets:/api
-    working_dir: /api
+      - ./src:/src
+    working_dir: /src
     command: "dotnet run"
     ports:
-      - "8001:8081"
+      - "5000:80"
 
   integration-tests:
     container_name: integration-tests
     image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - .:/src
-      - ../test:/test
+      - ./src:/src
+      - ./test:/test
     working_dir: /
     command: "dotnet test --no-restore"
     depends_on:
