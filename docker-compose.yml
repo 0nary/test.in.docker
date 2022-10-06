@@ -14,9 +14,8 @@ services:
     container_name: integration-tests
     image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - ./src:/src
-      - ./test:/test
-    working_dir: /src
+      - .:/solution
+    working_dir: /solution
     command: "dotnet test"
     depends_on:
      - timesheets-api
