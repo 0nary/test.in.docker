@@ -16,6 +16,6 @@ services:
     volumes:
       - ../..:/solution
     working_dir: /solution
-    command: "dotnet test ./test/Example.Service.UnitTest/Example.Service.UnitTest.csproj"
+    command: "dotnet test"
     depends_on:
      - timesheets-api
