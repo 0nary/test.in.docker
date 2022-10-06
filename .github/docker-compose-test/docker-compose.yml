@@ -5,7 +5,7 @@ services:
     image: example-api
     build:
       context: ../../
-      dockerfile: /src/Example.Service/Dockerfile
+      dockerfile: ./src/Example.Service/Dockerfile
     ports:
       - "5000:80"
 
