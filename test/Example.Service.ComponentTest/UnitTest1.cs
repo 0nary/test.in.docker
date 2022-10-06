@@ -1,3 +1,4 @@
+using Example.Service.ComponentTest.Setup;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
@@ -5,7 +6,7 @@ using System.Text;
 
 namespace Example.Service.ComponentTest;
 
-public class Tests
+public class Tests : TestingCaseFixture<TestingStartup>
 {
     [SetUp]
     public void Setup()
