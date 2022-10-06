@@ -7,7 +7,7 @@ services:
       context: ../../
       dockerfile: ./src/Example.Service/Dockerfile
     ports:
-      - "5000:80"
+      - "8001:8081"
 
   integration-tests:
     container_name: integration-tests
