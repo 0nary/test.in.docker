@@ -18,31 +18,31 @@ public class Tests
         Assert.Pass();
     }
 
-    [Test]
-    public async Task TestInternet()
-    {
+    //[Test]
+    //public async Task TestInternet()
+    //{
     
-        // Arrange
-        var httpClient = new HttpClient();
-        string responseJson = "";
-        // Act
+    //    // Arrange
+    //    var httpClient = new HttpClient();
+    //    string responseJson = "";
+    //    // Act
 
-        using (httpClient)
-        {
-            using (var response = await httpClient.GetAsync("https://httpbin.org/get"))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
-                }
-            }
-        }
+    //    using (httpClient)
+    //    {
+    //        using (var response = await httpClient.GetAsync("https://httpbin.org/get"))
+    //        {
+    //            if (response.IsSuccessStatusCode)
+    //            {
+    //                responseJson = await response.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
+    //            }
+    //        }
+    //    }
 
 
 
-        // Assert
-        Assert.IsNotEmpty(responseJson);
-    }
+    //    // Assert
+    //    Assert.IsNotEmpty(responseJson);
+    //}
 
     [Test]
     public async Task ShouldReturnAListOfStaticValuesOnGetRequest()
@@ -54,7 +54,7 @@ public class Tests
 
         using (httpClient)
         {
-            using (var response = await httpClient.GetAsync("http://127.0.0.1:5000/api/Values"))
+            using (var response = await httpClient.GetAsync("http://localhost:5000/api/Values"))
             {
                 if (response.IsSuccessStatusCode)
                 {
