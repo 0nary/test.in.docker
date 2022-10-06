@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Example.Service.ComponentTest;
 
-public class Tests : TestingCaseFixture<TestingStartup>
+public class Tests 
 {
     [SetUp]
     public void Setup()
