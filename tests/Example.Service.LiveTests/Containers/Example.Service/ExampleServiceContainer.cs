@@ -15,19 +15,12 @@ namespace Example.Service.LiveTests.Containers
     {
         private static readonly ExampleServiceImage Image = new();
 
-        private readonly IDockerNetwork _exampleServiceNetwork;
-
         private readonly IDockerContainer _exampleServiceContainer;
 
         public ExampleServiceContainer()
         {
-            _exampleServiceNetwork = new TestcontainersNetworkBuilder()
-              .WithName(Guid.NewGuid().ToString("D"))
-              .Build();
-
             _exampleServiceContainer = new TestcontainersBuilder<TestcontainersContainer>()
               .WithImage(Image)
-              .WithNetwork(_exampleServiceNetwork)
               .WithPortBinding(ExampleServiceImage.HttpsPort, true)
               .WithEnvironment("ASPNETCORE_URLS", "https://+")
               .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(ExampleServiceImage.HttpsPort))
@@ -40,9 +33,6 @@ namespace Example.Service.LiveTests.Containers
             await Image.InitializeAsync()
               .ConfigureAwait(false);
 
-            await _exampleServiceNetwork.CreateAsync()
-              .ConfigureAwait(false);
-
             await _exampleServiceContainer.StartAsync()
               .ConfigureAwait(false);
         }
@@ -53,9 +43,6 @@ namespace Example.Service.LiveTests.Containers
               .ConfigureAwait(false);
 
             await _exampleServiceContainer.DisposeAsync()
-              .ConfigureAwait(false);
-
-            await _exampleServiceNetwork.DeleteAsync()
               .ConfigureAwait(false);
         }
 
